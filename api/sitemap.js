@@ -1,7 +1,7 @@
-// This runs on Vercel's server, not in the browser — so it
-// is not subject to the browser's CORS restrictions. The
-// frontend calls this endpoint instead of fetching the
-// target sitemap directly.
+/* This runs on Vercel's server, not in the browser — so it
+is not subject to the browser's CORS restrictions. The
+frontend calls this endpoint instead of fetching the
+target sitemap directly. */
 
 module.exports = async (req, res) => {
 
@@ -27,8 +27,9 @@ module.exports = async (req, res) => {
         return;
     }
 
-    // Only allow http/https, so this can't be pointed at
-    // internal or unexpected protocols
+    /* Only allow http/https, so this can't be pointed at
+    internal or unexpected protocols */
+    
     if (targetUrl.protocol !== "http:" && targetUrl.protocol !== "https:") {
 
         res.status(400).json({ error: "Only http and https URLs are allowed." });

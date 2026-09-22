@@ -120,10 +120,6 @@ highlightText();
 
 // DEVELOPER B — ROBOTS.TXT CHECKER
 
-// This is the same line-by-line check used by the single
-// "Test URL" button, pulled into its own function so the
-// sitemap feature below can reuse it for every listed page
-// without duplicating the logic.
 function isBlocked(robotsText, selectedBot, testPath) {
 
     const lines = robotsText.split("\n");
@@ -229,8 +225,6 @@ testButton.addEventListener("click", function () {
 
 // SITEMAP BULK TEST
 
-// Turn a status message on/off, with a color depending
-// on whether it's an error, a success note, or neutral.
 function setSitemapStatus(message, type) {
 
     sitemapStatus.textContent = message;
@@ -246,17 +240,11 @@ function setSitemapStatus(message, type) {
     }
 }
 
-
-// Pull every <loc>...</loc> value out of a sitemap.xml
-// document using the browser's built-in XML parser —
-// no regex needed, same rule as the rest of the project.
 function extractLocsFromSitemap(xmlText) {
 
     const parser = new DOMParser();
     const xmlDoc = parser.parseFromString(xmlText, "application/xml");
 
-    // A malformed XML document reports its error inside
-    // a <parsererror> element instead of throwing
     const parseError = xmlDoc.querySelector("parsererror");
 
     if (parseError) {
@@ -279,11 +267,6 @@ function extractLocsFromSitemap(xmlText) {
     return urls;
 }
 
-
-// Turn a full URL like "https://example.com/pricing" into
-// just the path ("/pricing") so it can be tested the same
-// way as a normal Disallow rule. Falls back to the raw
-// value if it isn't a valid absolute URL.
 function toPath(fullUrl) {
 
     try {
@@ -337,12 +320,6 @@ sitemapButton.addEventListener("click", async function () {
 
     let xmlText;
 
-    try {
-
-        // Go through our own /api/sitemap endpoint instead of
-        // fetching the target site directly. That endpoint runs
-        // on the server, so it isn't subject to the browser's
-        // CORS restrictions the way a direct fetch would be.
         const response = await fetch(
             "/api/sitemap?url=" + encodeURIComponent(sitemapUrl)
         );
@@ -361,8 +338,6 @@ sitemapButton.addEventListener("click", async function () {
 
             } catch (parseErr) {
 
-                // Response wasn't JSON — fall back to the
-                // generic status message above
             }
 
             setSitemapStatus("Couldn't load that sitemap — " + message, "error");
