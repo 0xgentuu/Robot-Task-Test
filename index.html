@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Robots.txt Checker</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+
+    <main class="app">
+
+        <!-- HEADER -->
+        <header class="app-header">
+
+            <h1>🤖 Robots.txt Checker</h1>
+
+            <p>
+                Write crawler rules and test whether a bot is allowed
+                to access a URL.
+            </p>
+
+        </header>
+
+
+        <!-- MAIN WORKSPACE -->
+        <div class="workspace">
+
+
+            <!-- LEFT SIDE: EDITOR -->
+            <section class="editor-panel">
+
+                <h2>ROBOTS.TXT RULES</h2>
+
+                <div class="editor-wrapper">
+
+                    <div id="highlight-content"></div>
+
+                    <textarea
+                        id="editor"
+                        spellcheck="false"
+                        placeholder="Write your robots.txt rules here..."
+                    ></textarea>
+
+                </div>
+
+            </section>
+
+
+            <!-- RIGHT SIDE: TESTER -->
+            <section class="tester-panel">
+
+                <h2>Test Crawler</h2>
+
+                <p class="tester-description">
+                    Enter a URL path to check crawler access.
+                </p>
+
+
+                <label for="bot-select">
+                    Select Bot
+                </label>
+
+                <select id="bot-select">
+
+                    <option value="*">
+                        All Bots (*)
+                    </option>
+
+                    <option value="Googlebot">
+                        Googlebot
+                    </option>
+
+                    <option value="Bingbot">
+                        Bingbot
+                    </option>
+
+                </select>
+
+
+                <label for="test-url">
+                    Test URL Path
+                </label>
+
+                <input
+                    type="text"
+                    id="test-url"
+                    placeholder="/admin"
+                >
+
+
+                <button id="test-btn">
+                    Test URL
+                </button>
+
+
+                <div id="result-box">
+                    RESULT
+                </div>
+
+            </section>
+
+        </div>
+
+
+        <!-- SITEMAP BULK TEST -->
+        <section class="sitemap-panel">
+
+            <h2>Test All Sitemap URLs</h2>
+
+            <p class="tester-description">
+                Paste a sitemap.xml URL to fetch every page it lists and test
+                each one against the rules above, for the selected bot.
+            </p>
+
+            <div class="sitemap-controls">
+
+                <input
+                    type="text"
+                    id="sitemap-url"
+                    placeholder="https://example.com/sitemap.xml"
+                >
+
+                <button id="sitemap-btn">
+                    Load &amp; Test All
+                </button>
+
+            </div>
+
+            <div id="sitemap-status"></div>
+
+            <div id="sitemap-results"></div>
+
+        </section>
+
+    </main>
+
+</body>
+
+</html>
