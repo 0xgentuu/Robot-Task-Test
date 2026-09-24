@@ -320,6 +320,8 @@ sitemapButton.addEventListener("click", async function () {
 
     let xmlText;
 
+    try {
+
         const response = await fetch(
             "/api/sitemap?url=" + encodeURIComponent(sitemapUrl)
         );
